@@ -6,13 +6,13 @@ import { BehaviorSubject } from 'rxjs'
 })
 
 export class UserDataService {
-  public user$: BehaviorSubject<any> = new BehaviorSubject<any>(null)
+  public user$: BehaviorSubject<string> = new BehaviorSubject<string>('')
 
-  public setUser (data: any): void {
-    this.user$.next(data)
+  public setUser (data: string): void {
+    this.user$.next(JSON.parse(data).email)
   }
 
   public deleteUser (): void {
-    this.user$.next(null)
+    this.user$.next('')
   }
 }
