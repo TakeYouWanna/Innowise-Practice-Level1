@@ -1,0 +1,26 @@
+div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+div button{
+    margin-left: 20px;
+}
+  
+h1 {
+    color: black;
+    margin: 0;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.signBut {
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
+}
+
+.signBut:hover{
+    text-decoration: underline;
+}
