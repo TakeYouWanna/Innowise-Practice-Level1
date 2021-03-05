@@ -1,0 +1,17 @@
+<form [formGroup]="taskForm" (submit)="getData()">
+  <div class="glass-window flex-cont">
+    <h1>{{ method }}</h1>
+    <label for="name">Task name</label>
+    <input type="text" id="name" formControlName="name" />
+    <label for="description">Task description</label>
+    <textarea
+      id="description"
+      formControlName="description"
+      rows="10"
+      cols="30"
+    ></textarea>
+    <label for="date">Task date</label>
+    <input type="date" id="date" formControlName="date" #taskDateRef />
+    <button type="submit" [disabled]="taskForm.invalid">Save</button>
+  </div>
+</form>

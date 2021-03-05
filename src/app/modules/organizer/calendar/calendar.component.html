@@ -1,0 +1,38 @@
+<div class="scroll-wrapper" #scrollWrapperRef>
+  <div
+    class="glass-window"
+    *ngFor="let day of days; trackBy: trackByDays"
+    (click)="showTasks(day)"
+    [ngClass]="{ selected: day == currentDay }"
+  >
+    {{ day | date: "EEE," }}<br />
+    {{ day | date: "MMMM" }}<br />
+    {{ day | date: "d" }}<br />
+    <span *ngIf="tasksMap.get(day)?.some(checkActive)" class="circle"></span>
+    <span *ngIf="tasksMap.get(day)?.some(checkCompleted)" class="circle done"></span>
+  </div>
+</div>
+
+<div class="glass-window tasks-container">
+  <div *ngIf="(user$ | async)?.email; else elseBlock" class="scroll-wrapper-tasks">
+    <div *ngFor="let task of currentTasks | keyvalue">
+      <input
+        type="checkbox"
+        [checked]="task.value.status"
+        (change)="changeStatus(task.key, task.value)"
+      />
+      <span> {{ task.value.name }} </span>
+      <span class="btn red-font" (click)="deleteTask(task.key)"> &#10060; </span>
+      <span class="btn" [routerLink]="['taskManager', task.key]"> &#9998; </span>
+      <p> {{ task.value.description }} </p>
+    </div>
+    <a class="add-btn" [routerLink]="['taskManager', '']">
+      &#10010; Add new task
+    </a>
+  </div>
+
+  <ng-template #elseBlock>
+    <p>You are not authorized &#9785;</p>
+    <p>Sign in or Sign up to use full features! &#10004;</p>
+  </ng-template>
+</div>

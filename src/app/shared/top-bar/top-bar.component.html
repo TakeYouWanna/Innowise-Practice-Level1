@@ -1,0 +1,12 @@
+<a routerLink="/">
+  <h1>TASK DIARY</h1>
+</a>
+
+<div *ngIf="(user$ | async)?.email; else elseBlock">
+  <h3>{{ user$.value.email }}</h3>
+  <a class="outBtn Btn" (click)="logOut()">Log Out</a>
+</div>
+
+<ng-template #elseBlock>
+  <a class="signBtn Btn" routerLink="/authorization"> Sign In </a>
+</ng-template>

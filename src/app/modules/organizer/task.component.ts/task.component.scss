@@ -1,0 +1,16 @@
+input {
+  font-size: 14px;
+  border-radius: 2px;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #bdbdbd;
+  color: black;
+}
+
+textarea {
+  color: black;
+}
+
+textarea.ng-touched.ng-invalid {
+  border: 2px solid red;
+}
