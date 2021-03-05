@@ -1,0 +1,18 @@
+<form
+  [formGroup]="loginForm"
+  (submit)="onSubmit()"
+  *ngIf="!(user$ | async)?.email"
+>
+  <div class="glass-window flex-cont">
+    <h1>Sign In</h1>
+    <p class="error" *ngIf="error">{{ error }}</p>
+    <label for="Login">Your email:</label>
+    <input type="email" id="Login" formControlName="email" />
+    <label for="Login">Your password:</label>
+    <input type="password" required id="Password" formControlName="password" />
+    <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
+    <br />
+    <label for="regist-button">If you are not registered </label>
+    <a routerLink="registration">Registration</a>
+  </div>
+</form>
