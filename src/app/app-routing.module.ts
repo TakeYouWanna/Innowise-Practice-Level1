@@ -1,15 +1,23 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { LoginWindowComponent } from './modules/login-window/login-window.component'
-import { RegistrWindowComponent } from './modules/registr-window/registr-window.component'
 
 const routes: Routes = [
-  { path: 'authorization', component: LoginWindowComponent },
-  { path: 'registration', component: RegistrWindowComponent }
+  {
+    path: '',
+    loadChildren: async () =>
+      await import('./modules/organizer/organizer.module').then(
+        (m) => m.OrganizerModule
+      )
+  },
+  {
+    path: 'authorization',
+    loadChildren: async () =>
+      await import('./modules/auth/auth.module').then((m) => m.AuthModule)
+  }
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
