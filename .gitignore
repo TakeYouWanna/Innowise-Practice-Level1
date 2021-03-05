@@ -45,3 +45,9 @@ testem.log
 .DS_Store
 Thumbs.db
 README.md
+src/environments/environment.prod.ts
+.eslintrc.js
+.eslintrc.js
+*.json
+tsconfig.json
+*.json
