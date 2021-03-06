@@ -3,6 +3,7 @@
   top: 0;
   left: 0;
   max-width: 70vw;
+  min-width: 480px;
   overflow-y: hidden;
   overflow-x: auto;
   margin-bottom: 10px;
@@ -34,6 +35,8 @@
   width: 50vw;
   padding: 3vh 3vw;
   font-size: 14pt;
+  min-width: 480px;
+  
 }
 
 .add-btn {
