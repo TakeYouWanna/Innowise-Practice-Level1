@@ -11,7 +11,7 @@ import { FirebaseFirestoreService } from 'src/app/shared/services/firebase/fireb
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss']
 })
-export class TaskComponent implements OnInit {
+export class TaskManagerComponent implements OnInit {
   public taskForm!: FormGroup
   public method: string = 'Task Additing'
   public additing: boolean = true

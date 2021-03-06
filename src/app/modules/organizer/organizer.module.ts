@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CalendarComponent } from './calendar/calendar.component'
 import { OrganizerRoutingModule } from './organizer-routing.module'
-import { TaskComponent } from './task.component.ts/task.component'
+import { TaskManagerComponent } from './task-manager/task.component'
 
 @NgModule({
   imports: [
@@ -13,6 +13,6 @@ import { TaskComponent } from './task.component.ts/task.component'
     ReactiveFormsModule
   ],
   exports: [],
-  declarations: [CalendarComponent, TaskComponent]
+  declarations: [CalendarComponent, TaskManagerComponent]
 })
 export class OrganizerModule {}
