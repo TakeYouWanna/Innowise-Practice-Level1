@@ -1,5 +1,5 @@
 <form
-  [formGroup]="registForm"
+  [formGroup]="registerForm"
   (submit)="onSubmit()"
   *ngIf="!(user$ | async)?.email"
 >
@@ -19,6 +19,6 @@
       id="PasswordConfirm"
       formControlName="passConfirm"
     />
-    <button type="submit" [disabled]="registForm.invalid">Register</button>
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
   </div>
 </form>

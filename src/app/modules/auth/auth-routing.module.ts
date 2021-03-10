@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { LoginWindowComponent } from './login-window/login-window.component'
-import { RegistrWindowComponent } from './registr-window/registr-window.component'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '', component: LoginWindowComponent },
-      { path: 'registration', component: RegistrWindowComponent }
+      { path: '', component: LoginPageComponent },
+      { path: 'registration', component: RegisterPageComponent }
     ]
   }
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

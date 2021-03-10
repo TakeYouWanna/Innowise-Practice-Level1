@@ -1,0 +1,11 @@
+<div
+  class="glass-window"
+  (click)="onClick.emit(day)"
+  [ngClass]="{ selected: day == currentDay }"
+>
+  {{ day | date: 'EEE' }} <br />
+  {{ day | date: 'MMM' }} <br />
+  {{ day | date: 'd' }} <br />
+  <span *ngIf="active | async" class="circle"></span>
+  <span *ngIf="completed | async" class="circle done"></span>
+</div>

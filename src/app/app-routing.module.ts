@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -14,7 +14,7 @@ const routes: Routes = [
     loadChildren: async () =>
       await import('./modules/auth/auth.module').then((m) => m.AuthModule)
   }
-]
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

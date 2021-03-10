@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core'
-import { AuthRouterModule } from './auth-routing.module'
-import { LoginWindowComponent } from './login-window/login-window.component'
-import { RegistrWindowComponent } from './registr-window/registr-window.component'
-import { ReactiveFormsModule } from '@angular/forms'
-import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core';
+import { AuthRouterModule } from './auth-routing.module';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [AuthRouterModule, ReactiveFormsModule, CommonModule],
-  declarations: [LoginWindowComponent, RegistrWindowComponent],
+  declarations: [LoginPageComponent, RegisterPageComponent],
   providers: []
 })
 export class AuthModule {}

@@ -14,7 +14,7 @@ export const environment = {
     appId: '1:678231746401:web:9bfd49416d71d73844c720',
     measurementId: 'G-LX1GLSW2SN'
   }
-}
+};
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
