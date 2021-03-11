@@ -1,5 +1,7 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
@@ -14,7 +16,8 @@ import { DateService } from '../../../shared/services/date/date.service';
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  styleUrls: ['./calendar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarComponent implements AfterViewInit, OnInit {
   public currentTasks!: { [id: string]: Task };
@@ -29,7 +32,8 @@ export class CalendarComponent implements AfterViewInit, OnInit {
     private dateService: DateService,
     private userDataService: UserDataService,
     private firebaseFirestore: FirebaseFirestoreService,
-    private taskDataService: TaskDataService
+    private taskDataService: TaskDataService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.days = this.dateService.getMonth();
   }
@@ -58,6 +62,7 @@ export class CalendarComponent implements AfterViewInit, OnInit {
         .subscribe((data) => {
           this.taskDataService.setTasks(data);
           this.days.forEach((day) => this.taskDataService.setTaskToMap(day));
+          this.changeDetectorRef.detectChanges();
         });
     }
   }
@@ -74,6 +79,7 @@ export class CalendarComponent implements AfterViewInit, OnInit {
         delete this.currentTasks[taskId];
         this.taskDataService.deleteTask(taskId);
         this.taskDataService.setTaskToMap(this.currentDay);
+        this.changeDetectorRef.detectChanges();
       });
   }
 
