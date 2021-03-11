@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseAuthService } from '../../../shared/services/firebase/firebase-auth.service';
 import { UserDataService } from 'src/app/shared/services/data/user-data.service';
@@ -19,7 +23,8 @@ export class LoginPageComponent {
     private firebaseAuthService: FirebaseAuthService,
     private formBuilder: FormBuilder,
     private userDataService: UserDataService,
-    private router: Router
+    private router: Router,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.loginForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
@@ -38,6 +43,7 @@ export class LoginPageComponent {
         (err) => {
           this.error = err.message;
           this.loginForm.reset();
+          this.changeDetectorRef.detectChanges();
         }
       );
   }

@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirebaseAuthService } from 'src/app/shared/services/firebase/firebase-auth.service';
@@ -19,7 +23,8 @@ export class RegisterPageComponent {
     private userDataService: UserDataService,
     private firebaseAuthService: FirebaseAuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.registerForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
@@ -40,10 +45,12 @@ export class RegisterPageComponent {
         (err) => {
           this.error = err.message;
           this.registerForm.reset();
+          this.changeDetectorRef.detectChanges();
         }
       );
     } else {
       this.error = 'Passwords do not match';
+      this.changeDetectorRef.detectChanges();
     }
   }
 }
