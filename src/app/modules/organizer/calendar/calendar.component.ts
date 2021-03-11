@@ -62,7 +62,7 @@ export class CalendarComponent implements AfterViewInit, OnInit {
         .subscribe((data) => {
           this.taskDataService.setTasks(data);
           this.days.forEach((day) => this.taskDataService.setTaskToMap(day));
-          this.changeDetectorRef.detectChanges();
+          this.changeDetectorRef.markForCheck();
         });
     }
   }
@@ -79,7 +79,7 @@ export class CalendarComponent implements AfterViewInit, OnInit {
         delete this.currentTasks[taskId];
         this.taskDataService.deleteTask(taskId);
         this.taskDataService.setTaskToMap(this.currentDay);
-        this.changeDetectorRef.detectChanges();
+        this.changeDetectorRef.markForCheck();
       });
   }
 
