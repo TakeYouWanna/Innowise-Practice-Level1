@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirebaseAuthService } from 'src/app/shared/services/firebase/firebase-auth.service';
 import { UserDataService } from 'src/app/shared/services/data/user-data.service';
+import { passwordMatch } from './password-match.validator';
 
 @Component({
   selector: 'app-register-page',
@@ -26,31 +27,31 @@ export class RegisterPageComponent {
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef
   ) {
-    this.registerForm = this.formBuilder.group({
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.minLength(6)]],
-      passConfirm: [null, [Validators.required, Validators.minLength(6)]]
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        email: [null, [Validators.required, Validators.email]],
+        password: [null, [Validators.required, Validators.minLength(6)]],
+        passConfirm: [null, [Validators.required, Validators.minLength(6)]]
+      },
+      {
+        validator: passwordMatch
+      }
+    );
   }
 
   public onSubmit(): void {
     const email = this.registerForm.value.email;
     const password = this.registerForm.value.password;
-    if (password === this.registerForm.value.passConfirm) {
-      this.firebaseAuthService.signUp(email, password).subscribe(
-        (data) => {
-          this.userDataService.setUser(data);
-          this.router.navigate(['']);
-        },
-        (err) => {
-          this.error = err.message;
-          this.registerForm.reset();
-          this.changeDetectorRef.detectChanges();
-        }
-      );
-    } else {
-      this.error = 'Passwords do not match';
-      this.changeDetectorRef.detectChanges();
-    }
+    this.firebaseAuthService.signUp(email, password).subscribe(
+      (data) => {
+        this.userDataService.setUser(data);
+        this.router.navigate(['']);
+      },
+      (err) => {
+        this.error = err.message;
+        this.registerForm.reset();
+        this.changeDetectorRef.detectChanges();
+      }
+    );
   }
 }
